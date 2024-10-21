@@ -1,0 +1,12 @@
+.icon-animation:hover .icon-animation-children {
+  margin-top: -40px;
+  transition: margin-top ease-in 0.2s;
+}
+
+.icon-animation .icon-animation-children {
+  margin-top: 0;
+  transition: margin-top ease-in 0.2s;
+}
+.icon-animation{
+    overflow: hidden;
+}
