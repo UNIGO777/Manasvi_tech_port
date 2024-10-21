@@ -49,7 +49,12 @@ router.post('/create-project', verifyAdminToken, upload.fields([
 ]), ProjectController.createProject);
 
 router.get('/getProjectById/:id', ProjectController.getProjectById);
-router.put('/updateProject/:id', verifyAdminToken, ProjectController.updateProject);
+router.put('/updateProject/:id', verifyAdminToken, upload.fields([
+  { name: 'demoVideo', maxCount: 1 },
+  { name: 'mainImage', maxCount: 1 },
+  { name: 'subMainImage', maxCount: 1 },
+  { name: 'images', maxCount: 10 }
+]), ProjectController.updateProject);
 router.delete('/deleteProject/:id', verifyAdminToken, ProjectController.deleteProject);
 
 // Exporting the router

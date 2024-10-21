@@ -5,6 +5,7 @@ import './index.css';
 
 const Navbar = ({ NavbarData }) => {
     const [menu, setMenu] = useState(false);
+    console.log(NavbarData);
 
     const handleResize = () => {
         if (window.innerWidth > 1024) { // Assuming 1024px is the breakpoint for large screens
@@ -23,8 +24,13 @@ const Navbar = ({ NavbarData }) => {
             <div className='fixed top-0 h-fit lg:h-[15vh]  z-50 w-full '>
                 <header className='h-10 p-2 hidden lg:flex backdrop-filter backdrop-blur-md bg-opacity-30 bg-[#000000] md:px-10 justify-between items-center'>
                     <div className='flex items-center '>
+<<<<<<< HEAD
                         <div className='flex items-center gap-3'>
                             {NavbarData.firstHeader.contectInfo?.map((item, index) => {
+=======
+                        <div className='flex gap-3 items-center'>
+                            {NavbarData?.firstHeader?.contectInfo?.map((item, index) => {
+>>>>>>> 55a921bfa07f28ba309a2f94e0cd6a7f363d9b20
                                 return <div className='flex items-center gap-1 cursor-pointer text-[#036FFB]' key={index} >
                                     {item.icon}
                                     <Link to={item.link} target="_blank" className='text-[#ededed] hover:text-[#036FFB] text-sm md:text-base'>{item.text}</Link>
@@ -35,7 +41,7 @@ const Navbar = ({ NavbarData }) => {
                     <div className='flex items-center'>
                         <p className='mr-2 text-sm md:text-base text-[#ededed]'>Find Us On</p>
                         <div className='flex items-center gap-2 text-[#036FFB]'>
-                            {NavbarData.firstHeader.socialLinks?.map((item, index) => {
+                            {NavbarData?.firstHeader?.socialLinks?.map((item, index) => {
                                 return <Link key={index} to={item.link}>{item?.icon}</Link>
                             })}
                         </div>
@@ -43,7 +49,7 @@ const Navbar = ({ NavbarData }) => {
                 </header>
                 <nav className="flex w-full justify-between h-fit  backdrop-filter backdrop-blur-md bg-opacity-30 bg-[#000000] items-center p-4 relative ">
                     <div className="flex items-center w-20" >
-                        <img src={NavbarData.logo} alt="Logo" className="mr-2" />
+                        <img src={NavbarData?.logo} alt="Logo" className="mr-2" />
                      
                     </div>
                     <div className="relative lg:hidden">
@@ -54,7 +60,7 @@ const Navbar = ({ NavbarData }) => {
                             </button>
                             {menu && <div className="absolute right-0 p-4 mt-2 text-black bg-white rounded-md shadow-xl w-52 group-hover:block">
                                 <ul className="flex flex-col">
-                                    {NavbarData.links?.map((link, index) => (
+                                    {NavbarData?.links?.map((link, index) => (
                                         <li key={index} className="cursor-pointer text-[black] font-semibold hover:bg-gray-100 p-2">
                                             <Link to={link.link}>{link.title}</Link>
                                         </li>
@@ -64,15 +70,21 @@ const Navbar = ({ NavbarData }) => {
                         </div>
                     <div className='items-center hidden gap-4 lg:flex '>
                         <ul className="flex space-x-6 font-semibold">
-                            {NavbarData.links?.map((link, index) => {
+                            {NavbarData?.links?.map((link, index) => {
                                 return <li className="cursor-pointer text-[#ededed] Navlink" key={index}>
                                     <Link to={link.link} target="_blank">{link.title}</Link>
                                 </li>
                             })}
                         </ul>
+<<<<<<< HEAD
                         <Link to={NavbarData.button.link}>
                             <button className="px-6 py-2 font-bold text-white rounded-full bg-gradient-to-r from-blue-500 to-cyan-500">
                                 {NavbarData.button.text}
+=======
+                        <Link to={NavbarData?.button?.link}>
+                            <button className="px-6 py-2 font-bold bg-gradient-to-r rounded-full from-blue-500 to-cyan-500 text-white">
+                                {NavbarData?.button?.text}
+>>>>>>> 55a921bfa07f28ba309a2f94e0cd6a7f363d9b20
                             </button>
                         </Link>
                         

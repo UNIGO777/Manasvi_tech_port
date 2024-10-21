@@ -14,6 +14,7 @@ import logo from "../../imgvid/logo.png";
 
 
 
+<<<<<<< HEAD
 const NavbarData = {
   firstHeader: {
     contectInfo: [
@@ -105,6 +106,9 @@ const NavbarData = {
     link: "https://manasviportfolio.online/",
   },
 };
+=======
+
+>>>>>>> 55a921bfa07f28ba309a2f94e0cd6a7f363d9b20
 
 
 
@@ -137,7 +141,7 @@ const PortFolio = () => {
   }, [base, products]);
   return (
     <div>
-      <Navbar NavbarData={NavbarData} />
+    
       <Hero />
       <Heading
         title="Expect Nothing Less Than Perfect"
@@ -160,7 +164,7 @@ const PortFolio = () => {
       </div>}
       <OurServices/>
 
-      <Footer logo={logo} />
+      
     </div>
   );
 };
