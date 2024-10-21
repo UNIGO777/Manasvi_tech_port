@@ -6,6 +6,7 @@ const AdminDashboard = lazy(() => import("./pages/dashboard"));
 const AdminProjects = lazy(() => import("./pages/projects"));
 const AdminCategories = lazy(() => import("./pages/categories"));
 const AddNewProject = lazy(() => import("./pages/addNewProduct"));
+const UpdateProject = lazy(() => import("./pages/updateProject"));
 
 const AdminPanel = () => {
   const [Projects, setProjects] = useState([]);
@@ -37,10 +38,10 @@ const AdminPanel = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Navbar */}
       <nav className="bg-white shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex">
-              <div className="flex-shrink-0 flex items-center">
+              <div className="flex items-center flex-shrink-0">
                 <Link to="/">
                   <img
                     className="w-16"
@@ -77,8 +78,8 @@ const AdminPanel = () => {
               </div>
             </div>
             
-            <div className="flex p-2 items-center">
-                <button className="text-white bg-black hover:bg-gray-800 ml-10 px-4 py-2 rounded-md" onClick={handleLogout}>Logout</button>
+            <div className="flex items-center p-2">
+                <button className="px-4 py-2 ml-10 text-white bg-black rounded-md hover:bg-gray-800" onClick={handleLogout}>Logout</button>
             </div>
           </div>
         </div>
@@ -87,7 +88,7 @@ const AdminPanel = () => {
       {/* Main content */}
       <Suspense
         fallback={
-          <div className="flex justify-center items-center h-screen">
+          <div className="flex items-center justify-center h-screen">
             Loading...
           </div>
         }
@@ -98,6 +99,7 @@ const AdminPanel = () => {
         {path === '/admin/projects' && <AdminProjects Projects={Projects} />}
         {/* {path === '/admin/categories' && <AdminCategories subSubCategories={subSubCategories} categories={categories} subCategories={subCategories} />} */}
         {path === '/admin/add-new-project' && <AddNewProject />}
+        {path === '/admin/update-project/:id' && <UpdateProject />}
       </Suspense>
     </div>
   );

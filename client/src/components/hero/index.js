@@ -13,7 +13,7 @@ const Hero = () => {
 
   
   return (
-    <div className='h-[150vh] md:h-screen  w-screen bg-cover bg-center grid md:grid-cols-2' style={{ backgroundImage: `url(${HeroImage})` }}>
+    <div className='h-[150vh] md:h-screen  bg-cover bg-center grid md:grid-cols-2' style={{ backgroundImage: `url(${HeroImage})` }}>
       <div className='margin-auto mt-20 md:mt-0 text-center md:text-left md:ml-5 h-[70vh] md:h-full  w-full flex flex-wrap justify-center items-center '>
         <motion.h1
           className='text-white  text-[9vw]  md:text-5xl lg:text-6xl xl:text-7xl p-8 md:p-16 lg:p-24 uppercase font-semibold'
@@ -35,7 +35,7 @@ const Hero = () => {
             /></span>
         </motion.h1>
       </div>
-      <div className='margin-auto md:mt-10  h-full w-full flex flex-col justify-center items-center '>
+      <div className='flex flex-col items-center justify-center w-full h-full margin-auto md:mt-10 '>
         
         {projectNames?.map((project, index) => (
           <div className={`margin-auto w-[90%] sm:w-[80%] md:w-[70%] lg:w-[60%] ${index % 2 === 0 ? 'ml-5 sm:ml-10 md:ml-20' : 'mr-5 sm:mr-10 md:mr-20'}`} key={index}>
@@ -50,7 +50,7 @@ const Hero = () => {
                 <svg className='w-6 h-6 text-white' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill="none" d="M0 0h24v24H0z"></path><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
                 </div>
                 <div className='ml-4'>
-                  <p className='text-black text-lg font-bold'>{project}</p>
+                  <p className='text-lg font-bold text-black'>{project}</p>
                   
                 </div>
               </div>

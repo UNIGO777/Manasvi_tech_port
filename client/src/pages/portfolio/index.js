@@ -30,6 +30,7 @@ const NavbarData = {
         ),
         title: "Contact 1",
         text: "manasvitech01@gmail",
+        link:'mailto:manasvitech01@gmail'
       },
       {
         icon: (
@@ -94,13 +95,13 @@ const NavbarData = {
   },
   logo: logo,
   links: [
-    { title: "Home", link: "https://manasviportfolio.online/" },
+    { title: "Home", link: "https://www.manasvitech.in/" },
     { title: "Products", link: "https://manasviportfolio.online/" },
     { title: "Services+", link: "https://manasviportfolio.online/" },
     { title: "Clients", link: "https://manasviportfolio.online/" },
   ],
   button: {
-    text: "Contect Us",
+    text: "Contact Us",
     link: "https://manasviportfolio.online/",
   },
 };
@@ -140,10 +141,10 @@ const PortFolio = () => {
       <Hero />
       <Heading
         title="Expect Nothing Less Than Perfect"
-        subtitle="Apprize infotech Deliver Client’s Idea Into Excellent Result!"
+        subtitle="Manasvi Technologies Deliver Client’s Idea Into Excellent Result!"
       />
       <div className="flex justify-center w-full gap-20 mb-10">
-        <div className=" flex justify-center items-center gap-2 border-2 border-gray-100 shadow-md rounded-3xl">
+        <div className="flex items-center justify-center gap-2 border-2 border-gray-100 shadow-md rounded-3xl">
           <div className={`${base === 'Product Portfolio' ? 'bg-blue-500 text-white rounded-l-3xl border-white' : 'text-gray-500'} p-2 px-4 uppercase rounded-md cursor-pointer`} onClick={() => setBase('Product Portfolio')}>Product Portfolio</div>
           <div className={`${base === 'Service Portfolio' ? 'bg-blue-500 text-white rounded-r-3xl border-white' : 'text-gray-500'} p-2 px-4 uppercase rounded-md cursor-pointer`} onClick={() => setBase('Service Portfolio')}>Service Portfolio</div>
 
@@ -154,7 +155,7 @@ const PortFolio = () => {
           return <Card index={index} key={index} item={item} />;
         })}
       
-      </div> : <div className="flex justify-center mb-20 items-center">
+      </div> : <div className="flex items-center justify-center mb-20">
         <h1 className="text-2xl font-bold">No products found</h1>
       </div>}
       <OurServices/>
