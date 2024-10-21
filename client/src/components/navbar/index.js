@@ -5,6 +5,7 @@ import './index.css';
 
 const Navbar = ({ NavbarData }) => {
     const [menu, setMenu] = useState(false);
+    console.log(NavbarData);
 
     const handleResize = () => {
         if (window.innerWidth > 1024) { // Assuming 1024px is the breakpoint for large screens
@@ -24,7 +25,7 @@ const Navbar = ({ NavbarData }) => {
                 <header className='h-10 p-2 hidden lg:flex backdrop-filter backdrop-blur-md bg-opacity-30 bg-[#000000] md:px-10 justify-between items-center'>
                     <div className='flex items-center '>
                         <div className='flex gap-3 items-center'>
-                            {NavbarData.firstHeader.contectInfo?.map((item, index) => {
+                            {NavbarData?.firstHeader?.contectInfo?.map((item, index) => {
                                 return <div className='flex items-center gap-1 cursor-pointer text-[#036FFB]' key={index} >
                                     {item.icon}
                                     <span className='text-[#ededed] hover:text-[#036FFB] text-sm md:text-base'>{item.text}</span>
@@ -35,7 +36,7 @@ const Navbar = ({ NavbarData }) => {
                     <div className='flex items-center'>
                         <p className='mr-2 text-sm md:text-base text-[#ededed]'>Find Us On</p>
                         <div className='flex items-center gap-2 text-[#036FFB]'>
-                            {NavbarData.firstHeader.socialLinks?.map((item, index) => {
+                            {NavbarData?.firstHeader?.socialLinks?.map((item, index) => {
                                 return <Link key={index} to={item.link}>{item?.icon}</Link>
                             })}
                         </div>
@@ -43,7 +44,7 @@ const Navbar = ({ NavbarData }) => {
                 </header>
                 <nav className="flex w-full justify-between h-fit  backdrop-filter backdrop-blur-md bg-opacity-30 bg-[#000000] items-center p-4 relative ">
                     <div className="flex items-center w-20" >
-                        <img src={NavbarData.logo} alt="Logo" className="mr-2" />
+                        <img src={NavbarData?.logo} alt="Logo" className="mr-2" />
                      
                     </div>
                     <div className="relative lg:hidden">
@@ -54,7 +55,7 @@ const Navbar = ({ NavbarData }) => {
                             </button>
                             {menu && <div className="absolute right-0 mt-2 w-52 p-4 shadow-xl bg-white text-black rounded-md  group-hover:block">
                                 <ul className="flex flex-col">
-                                    {NavbarData.links?.map((link, index) => (
+                                    {NavbarData?.links?.map((link, index) => (
                                         <li key={index} className="cursor-pointer text-[black] font-semibold hover:bg-gray-100 p-2">
                                             <Link to={link.link}>{link.title}</Link>
                                         </li>
@@ -64,15 +65,15 @@ const Navbar = ({ NavbarData }) => {
                         </div>
                     <div className='items-center hidden lg:flex gap-4 '>
                         <ul className="flex space-x-6 font-semibold">
-                            {NavbarData.links?.map((link, index) => {
+                            {NavbarData?.links?.map((link, index) => {
                                 return <li className="cursor-pointer text-[#ededed] Navlink" key={index}>
                                     <Link to={link.link}>{link.title}</Link>
                                 </li>
                             })}
                         </ul>
-                        <Link to={NavbarData.button.link}>
+                        <Link to={NavbarData?.button?.link}>
                             <button className="px-6 py-2 font-bold bg-gradient-to-r rounded-full from-blue-500 to-cyan-500 text-white">
-                                {NavbarData.button.text}
+                                {NavbarData?.button?.text}
                             </button>
                         </Link>
                         
