@@ -30,6 +30,7 @@ exports.loginAdmin = async (req, res) => {
 
 // Middleware to verify admin token
 exports.verifyAdminToken = (req, res, next) => {
+    console.log(req.headers.authorization)
     const token = req.headers.authorization?.split(' ')[1];
     if (!token) {
         return res.status(401).json({ message: 'Access denied. No token provided.' });

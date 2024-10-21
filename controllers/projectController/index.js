@@ -68,8 +68,27 @@ exports.getProjectById = async (req, res) => {
 // Update a project by ID
 exports.updateProject = async (req, res) => {
     try {
-        const project = await Project.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        const project = await Project.findById(req.params.id);
         if (!project) return res.status(404).json({ message: 'Project not found' });
+
+        // Update only the fields that are provided in the request body
+        Object.keys(req.body).forEach(key => {
+            project[key] = req.body[key];
+        });
+
+        // Update file fields if they are provided, otherwise keep the previous values
+        const { demoVideo, mainImage, subMainImage, images } = req.files || {};
+        if (demoVideo && demoVideo.length > 0) project.demoVideo = demoVideo[0].filename;
+        if (mainImage && mainImage.length > 0) project.mainImage = mainImage[0].filename;
+        if (subMainImage && subMainImage.length > 0) project.subMainImage = subMainImage[0].filename;
+        if (images && images.length > 0) project.images = images.map(image => image.filename);
+
+        // Ensure that if a file field is not provided, it retains its previous value
+        if (!req.files?.mainImage) project.mainImage = project.mainImage || '';
+        if (!req.files?.subMainImage && project.subMainImage !== '') project.subMainImage = project.subMainImage || '';
+        if (!req.files?.images && project.images.length !== 0) project.images = project.images || [];
+
+        await project.save();
         res.status(200).json(project);
     } catch (error) {
         res.status(500).json({ message: error.message });

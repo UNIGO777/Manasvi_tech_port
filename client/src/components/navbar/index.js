@@ -24,13 +24,8 @@ const Navbar = ({ NavbarData }) => {
             <div className='fixed top-0 h-fit lg:h-[15vh]  z-50 w-full '>
                 <header className='h-10 p-2 hidden lg:flex backdrop-filter backdrop-blur-md bg-opacity-30 bg-[#000000] md:px-10 justify-between items-center'>
                     <div className='flex items-center '>
-<<<<<<< HEAD
                         <div className='flex items-center gap-3'>
                             {NavbarData.firstHeader.contectInfo?.map((item, index) => {
-=======
-                        <div className='flex gap-3 items-center'>
-                            {NavbarData?.firstHeader?.contectInfo?.map((item, index) => {
->>>>>>> 55a921bfa07f28ba309a2f94e0cd6a7f363d9b20
                                 return <div className='flex items-center gap-1 cursor-pointer text-[#036FFB]' key={index} >
                                     {item.icon}
                                     <Link to={item.link} target="_blank" className='text-[#ededed] hover:text-[#036FFB] text-sm md:text-base'>{item.text}</Link>
@@ -76,15 +71,9 @@ const Navbar = ({ NavbarData }) => {
                                 </li>
                             })}
                         </ul>
-<<<<<<< HEAD
                         <Link to={NavbarData.button.link}>
                             <button className="px-6 py-2 font-bold text-white rounded-full bg-gradient-to-r from-blue-500 to-cyan-500">
                                 {NavbarData.button.text}
-=======
-                        <Link to={NavbarData?.button?.link}>
-                            <button className="px-6 py-2 font-bold bg-gradient-to-r rounded-full from-blue-500 to-cyan-500 text-white">
-                                {NavbarData?.button?.text}
->>>>>>> 55a921bfa07f28ba309a2f94e0cd6a7f363d9b20
                             </button>
                         </Link>
                         

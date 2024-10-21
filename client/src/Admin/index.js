@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { lazy, Suspense, useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
+import logo from '../imgvid/logo.png';
 
 const AdminDashboard = lazy(() => import("./pages/dashboard"));
 const AdminProjects = lazy(() => import("./pages/projects"));
@@ -11,6 +12,7 @@ const UpdateProject = lazy(() => import("./pages/updateProject"));
 const AdminPanel = () => {
   const [Projects, setProjects] = useState([]);
   const location = useLocation();
+  const [updateProject, setupdateProject] = useState();
   const token = document?.cookie?.split('; ').find(row => row.startsWith('admin_token='))?.split('=')[1];
 
   const handleLogout = () => {
@@ -45,7 +47,7 @@ const AdminPanel = () => {
                 <Link to="/">
                   <img
                     className="w-16"
-                    src="https://manasviportfolio.online/static/media/manasvi_logo.b48774965ddf1f4d9635.png"
+                    src={logo}
                     alt="Logo"
                   />
                 </Link>
@@ -96,10 +98,10 @@ const AdminPanel = () => {
         {path === "/admin" && (
           <AdminDashboard Projects={Projects} />
         )}
-        {path === '/admin/projects' && <AdminProjects Projects={Projects} />}
+        {path === '/admin/projects' && <AdminProjects Projects={Projects} setUpdateProject={setupdateProject} />}
         {/* {path === '/admin/categories' && <AdminCategories subSubCategories={subSubCategories} categories={categories} subCategories={subCategories} />} */}
         {path === '/admin/add-new-project' && <AddNewProject />}
-        {path === '/admin/update-project/:id' && <UpdateProject />}
+        {path === `/admin/update-project` && <UpdateProject UpdateProject={updateProject} />}
       </Suspense>
     </div>
   );
