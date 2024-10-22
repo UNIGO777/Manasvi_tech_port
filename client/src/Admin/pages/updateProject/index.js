@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const UpdateProject = ({ UpdateProject }) => {
   const navigate = useNavigate();
@@ -162,7 +164,18 @@ const UpdateProject = ({ UpdateProject }) => {
       alert('Project updated successfully');
       navigate('/admin');
     } catch (error) {
-      console.error('Error updating project:', error);
+      if (error?.response && error?.response?.status === 500) {
+        toast.error(error.response.data.message);
+        if (error.response.data.message === 'invalid token') {
+          document.cookie = 'admin_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+          navigate('/admin/login');
+        }
+        console.log(error)
+        
+      } else {
+        toast.error( error.response.data.message);
+        console.log(error.response.data.message)
+      }
     } finally {
       setUpdating(false);
     }
@@ -475,6 +488,7 @@ const UpdateProject = ({ UpdateProject }) => {
           </button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };

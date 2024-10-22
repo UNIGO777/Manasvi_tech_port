@@ -72,21 +72,32 @@ exports.updateProject = async (req, res) => {
         if (!project) return res.status(404).json({ message: 'Project not found' });
 
         // Update only the fields that are provided in the request body
-        Object.keys(req.body).forEach(key => {
-            project[key] = req.body[key];
-        });
+        const projectData = req.body;
+        if (req.body.name) project.name = req.body.name;
+        if (req.body.description) project.description = req.body.description;
+        if (req.body.demoLink) project.demoLink = req.body.demoLink;
+        if (req.body.keyFeatures) project.keyFeatures = req.body.keyFeatures;
+        if (req.body.techStacks) project.techStacks = req.body.techStacks;
+        if (req.body.outcome) project.outcome = req.body.outcome;
+        if (req.body.projectStatus) project.projectStatus = req.body.projectStatus;
+        if (req.body.projectType) project.projectType = req.body.projectType;
+        if (req.body.clientReview) project.clientReview = req.body.clientReview;
 
         // Update file fields if they are provided, otherwise keep the previous values
         const { demoVideo, mainImage, subMainImage, images } = req.files || {};
-        if (demoVideo && demoVideo.length > 0) project.demoVideo = demoVideo[0].filename;
-        if (mainImage && mainImage.length > 0) project.mainImage = mainImage[0].filename;
-        if (subMainImage && subMainImage.length > 0) project.subMainImage = subMainImage[0].filename;
-        if (images && images.length > 0) project.images = images.map(image => image.filename);
-
-        // Ensure that if a file field is not provided, it retains its previous value
-        if (!req.files?.mainImage) project.mainImage = project.mainImage || '';
-        if (!req.files?.subMainImage && project.subMainImage !== '') project.subMainImage = project.subMainImage || '';
-        if (!req.files?.images && project.images.length !== 0) project.images = project.images || [];
+        if (images && Array.isArray(images) && images.length > 0) {
+            project.images = images.map(image => image.filename);
+        }
+        console.log(demoVideo, mainImage, subMainImage, images);
+        if (demoVideo && demoVideo.length > 0) {
+            project.demoVideo = demoVideo[0].filename;
+        }
+        if (mainImage && mainImage.length > 0) {
+            project.mainImage = mainImage[0].filename;
+        }
+        if (subMainImage && subMainImage.length > 0) {
+            project.subMainImage = subMainImage[0].filename;
+        }
 
         await project.save();
         res.status(200).json(project);
