@@ -5,7 +5,6 @@ import './index.css';
 
 const Navbar = ({ NavbarData, handleScroll }) => {
     const [menu, setMenu] = useState(false);
-    console.log(NavbarData);
 
     const handleResize = () => {
         if (window.innerWidth > 1024) { // Assuming 1024px is the breakpoint for large screens
@@ -81,7 +80,7 @@ const Navbar = ({ NavbarData, handleScroll }) => {
                             <button className="px-6 py-2 font-bold text-white rounded-full bg-gradient-to-r from-blue-500 to-cyan-500" onClick={() => handleScroll('contact')}>
                                 {NavbarData.button.text}
                             </button>
-                        \
+                        
                         
                     </div>
                 </nav>

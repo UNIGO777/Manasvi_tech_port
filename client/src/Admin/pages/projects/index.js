@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
-const AdminProject = () => {
+const AdminProject = ({setUpdateProject}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -120,10 +120,11 @@ const AdminProject = () => {
                         
                       </td>
                       <td className="px-6 py-4 text-sm font-medium text-center whitespace-nowrap">
-                        <Link to={`/admin/update-project/${project._id}`} 
+                        <Link to={`/admin/update-project`} 
                          
                           className="text-green-600 transition-colors duration-200 hover:text-green-900"
                           disabled={updateting}
+                          onClick={() => setUpdateProject(project)}
                         >
                           {updateting ? 'Updateing...' : 'Update'}
                         </Link>

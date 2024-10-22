@@ -13,7 +13,7 @@ import ClientCarousel from "../../components/clientsbar/index.js";
 const PortFolio = ({homeRef,productsRef,servicesRef,contactRef,clientRef,serviceRefClick,productRefClick}) => {
   console.log(serviceRefClick, "serviceRefClick");
   const [products, setProducts] = useState([]);
-  const [base, setBase] = useState();
+  const [base, setBase] = useState('Product Portfolio');
   useEffect(() => {
     if(serviceRefClick){
       setBase('Service Portfolio');
@@ -42,9 +42,9 @@ const PortFolio = ({homeRef,productsRef,servicesRef,contactRef,clientRef,service
   
 
   useEffect(() => {
-    const filtered = products.filter(item =>
-      base === "Product Portfolio" ? item.projectType === "product" : item.projectType === "service"
-    );
+    const filtered = Array.isArray(products) ? products.filter(item =>
+      base === "Product Portfolio" ? item?.projectType === "product" : item?.projectType === "service"
+    ) : [];
     setFilteredProducts(filtered);
   }, [base, products]);
 

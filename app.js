@@ -8,6 +8,7 @@ const path = require('path'); // Added path import
 const fs = require('fs'); // Import fs for file system operations
 const formidableMiddleware = require('express-formidable');
 require('dotenv').config();
+const emailRoutes = require('./routers/email'); // Import email routes
 
 const app = express();
 const PORT = process.env.PORT || 5000; // Default to 5000 if PORT is not set
@@ -20,7 +21,7 @@ mongoose.connect(process.env.MONGO_URL, {
 .then(() => {
     console.log('MongoDB connected successfully');
 })
-.catch(err => {
+    .catch(err => {
     console.error('MongoDB connection error:', err);
 });
 
@@ -40,7 +41,7 @@ app.use('/api/projects', projectRoutes); // Use project routes under /api/projec
 app.use('/api/admin', adminRoutes); // Use admin routes under /api/admin
 app.use('/uploads', express.static(uploadsDir)); // Fixed path for static files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Fixed path for static files
-
+app.use('/api/email', emailRoutes); // Use email routes under /api/email
 // Sample route
 app.get('/', (req, res) => {
     res.send('Hello World!');
