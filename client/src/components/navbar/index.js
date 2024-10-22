@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './index.css';
 
-const Navbar = ({ NavbarData }) => {
+const Navbar = ({ NavbarData, handleScroll }) => {
     const [menu, setMenu] = useState(false);
     console.log(NavbarData);
 
@@ -12,25 +12,24 @@ const Navbar = ({ NavbarData }) => {
             setMenu(false);
         }
     };
-
+    
     useEffect(() => {
         window.addEventListener('resize', handleResize);
         return () => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+    
+
+    
+
     return (
         <><div className='  bg-opacity-30 bg-[#000000] -mt-[9vw] h-[9vw]'>
             <div className='fixed top-0 h-fit lg:h-[15vh]  z-50 w-full '>
                 <header className='h-10 p-2 hidden lg:flex backdrop-filter backdrop-blur-md bg-opacity-30 bg-[#000000] md:px-10 justify-between items-center'>
                     <div className='flex items-center '>
-<<<<<<< HEAD
                         <div className='flex items-center gap-3'>
                             {NavbarData.firstHeader.contectInfo?.map((item, index) => {
-=======
-                        <div className='flex gap-3 items-center'>
-                            {NavbarData?.firstHeader?.contectInfo?.map((item, index) => {
->>>>>>> 55a921bfa07f28ba309a2f94e0cd6a7f363d9b20
                                 return <div className='flex items-center gap-1 cursor-pointer text-[#036FFB]' key={index} >
                                     {item.icon}
                                     <Link to={item.link} target="_blank" className='text-[#ededed] hover:text-[#036FFB] text-sm md:text-base'>{item.text}</Link>
@@ -61,10 +60,12 @@ const Navbar = ({ NavbarData }) => {
                             {menu && <div className="absolute right-0 p-4 mt-2 text-black bg-white rounded-md shadow-xl w-52 group-hover:block">
                                 <ul className="flex flex-col">
                                     {NavbarData?.links?.map((link, index) => (
+                                        
                                         <li key={index} className="cursor-pointer text-[black] font-semibold hover:bg-gray-100 p-2">
-                                            <Link to={link.link}>{link.title}</Link>
+                                            <p onClick={() => handleScroll(link.title.toLowerCase())}>{link.title.toLowerCase()}</p>
                                         </li>
                                     ))}
+                                    <li className="cursor-pointer text-[black] font-semibold hover:bg-gray-100 p-2" onClick={() => handleScroll('contact')}>Contact</li>
                                 </ul>
                             </div>}
                         </div>
@@ -72,21 +73,15 @@ const Navbar = ({ NavbarData }) => {
                         <ul className="flex space-x-6 font-semibold">
                             {NavbarData?.links?.map((link, index) => {
                                 return <li className="cursor-pointer text-[#ededed] Navlink" key={index}>
-                                    <Link to={link.link} target="_blank">{link.title}</Link>
+                                    <p onClick={() => handleScroll(link.title.toLowerCase())}>{link.title}</p>
                                 </li>
                             })}
                         </ul>
-<<<<<<< HEAD
-                        <Link to={NavbarData.button.link}>
-                            <button className="px-6 py-2 font-bold text-white rounded-full bg-gradient-to-r from-blue-500 to-cyan-500">
+                        
+                            <button className="px-6 py-2 font-bold text-white rounded-full bg-gradient-to-r from-blue-500 to-cyan-500" onClick={() => handleScroll('contact')}>
                                 {NavbarData.button.text}
-=======
-                        <Link to={NavbarData?.button?.link}>
-                            <button className="px-6 py-2 font-bold bg-gradient-to-r rounded-full from-blue-500 to-cyan-500 text-white">
-                                {NavbarData?.button?.text}
->>>>>>> 55a921bfa07f28ba309a2f94e0cd6a7f363d9b20
                             </button>
-                        </Link>
+                        \
                         
                     </div>
                 </nav>
