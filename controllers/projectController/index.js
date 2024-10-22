@@ -88,7 +88,7 @@ exports.updateProject = async (req, res) => {
         if (images && Array.isArray(images) && images.length > 0) {
             project.images = images.map(image => image.filename);
         }
-        console.log(demoVideo, mainImage, subMainImage, images);
+       
         if (demoVideo && demoVideo.length > 0) {
             project.demoVideo = demoVideo[0].filename;
         }

@@ -1,10 +1,9 @@
 import React, { Suspense, lazy, useRef } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Navbar from './components/navbar';
 import { NavbarData } from './staticData';
 import logo from './imgvid/logo.png';
 import { useState } from 'react';
-
 
 const PortFolio = lazy(() => import('./pages/portfolio'));
 const Admin = lazy(() => import('./Admin'));
@@ -27,9 +26,9 @@ const Hoc = ({ handleScroll, children,homeRef,productsRef,servicesRef,contactRef
 
   return (
     <>
-      <Navbar handleScroll={handleScroll} NavbarData={NavbarData} clientRef={clientRef} homeRef={homeRef} productsRef={productsRef} servicesRef={servicesRef} contactRef={contactRef} />
+      <Navbar handleScroll={handleScroll} NavbarData={NavbarData}  />
       {children}
-      <Footer logo={logo} />
+      <Footer logo={logo} handleScroll={handleScroll} />
     </>
   );
 };
@@ -40,11 +39,14 @@ function App() {
   const productsRef = useRef(null);
   const servicesRef = useRef(null);
   const contactRef = useRef(null);
+  const navigate = useNavigate();
   const clientRef = useRef(null);
   const [serviceRefClick,setServiceRefClick] = useState(false);
-  const [productRefClick,setProductRefClick] = useState(false);
+  const [productRefClick, setProductRefClick] = useState(false);
+  const location = useLocation();
 
   const handleScroll = (section) => {
+    if(location.pathname !== '/') navigate('/');
     const refs = {
       home: homeRef,
       products: productsRef,
@@ -73,7 +75,7 @@ function App() {
         <Route path="/" element={<Hoc handleScroll={handleScroll} homeRef={homeRef} productsRef={productsRef} servicesRef={servicesRef}  contactRef={contactRef} clientRef={clientRef}><PortFolio productRefClick={productRefClick} homeRef={homeRef} productsRef={productsRef} servicesRef={servicesRef} contactRef={contactRef} clientRef={clientRef} serviceRefClick={serviceRefClick} /></Hoc>} />
         <Route path="/admin/*" element={<ProtectedRoute user={AdminToken} navigate="/admin/login"><Admin /></ProtectedRoute>} />
         <Route path="/admin/login" element={<ProtectedRoute user={!AdminToken} navigate="/admin"><AdminAuthentication /></ProtectedRoute>} />
-        <Route path="/service/:serviceName" element={<Hoc><Service /></Hoc>} />
+        <Route path="/service/:serviceName" element={<Hoc handleScroll={handleScroll} homeRef={homeRef} productsRef={productsRef} servicesRef={servicesRef}  contactRef={contactRef} clientRef={clientRef}><Service /></Hoc>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>

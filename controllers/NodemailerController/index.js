@@ -26,9 +26,9 @@ exports.sendEmail = async (req, res) => {
         html: `
             <h1>New Message from ${name}</h1>
             <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone}</p>
             <p><strong>Subject:</strong> ${subject}</p>
             <p><strong>Message:</strong></p>
-            <p><strong>Phone:</strong> ${phone}</p>
             <p>${message}</p>
         `
     };

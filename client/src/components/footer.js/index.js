@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import IconAnimation from '../iconAnimation';
 
-const Footer = ({ logo }) => {
+const Footer = ({ logo,handleScroll }) => {
   const socialLinks = [
     {
       icon: <svg className='w-5' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5H16.5L17.5 9.5H14V7.5C14 6.47062 14 5.5 16 5.5H17.5V2.1401C17.1743 2.09685 15.943 2 14.6429 2C11.9284 2 10 3.65686 10 6.69971V9.5H7V13.5H10V22H14V13.5Z"></path></svg>,
@@ -26,10 +26,10 @@ const Footer = ({ logo }) => {
   ];
 
   const usefulLinks = [
-    { title: "Home", url: "https://manasviportfolio.online/" },
-    { title: "About Us", url: "https://manasviportfolio.online/" },
-    { title: "Contact Us", url: "https://manasviportfolio.online/" },
-    { title: "Portfolio", url: "https://manasviportfolio.online/" },
+    { title: "Home", onClick: () => handleScroll('home') },
+    { title: "About Us", onClick: () => handleScroll('client') },
+    { title: "Contact Us", onClick: () => handleScroll('contact') },
+    { title: "Portfolio", onClick: () => handleScroll('products') },
   ];
 
   const servicesLinks = [
@@ -61,7 +61,7 @@ const Footer = ({ logo }) => {
           <h3 className="font-bold mb-5 text-2xl">Useful Links</h3>
           <ul className='flex flex-col gap-3 font-semibold'>
             {usefulLinks?.map((link, index) => (
-              <li key={index}><Link to={link.url} className="hover:text-[#036FFB] text-[#ededed90]">{link.title}</Link></li>
+              <li key={index}><Link onClick={link.onClick} className="hover:text-[#036FFB] text-[#ededed90]">{link.title}</Link></li>
             ))}
           </ul>
         </div>
