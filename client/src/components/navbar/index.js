@@ -5,7 +5,6 @@ import './index.css';
 
 const Navbar = ({ NavbarData }) => {
     const [menu, setMenu] = useState(false);
-    console.log(NavbarData);
 
     const handleResize = () => {
         if (window.innerWidth > 1024) { // Assuming 1024px is the breakpoint for large screens

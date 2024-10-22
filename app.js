@@ -22,7 +22,6 @@ mongoose.connect(process.env.MONGO_URL, {
     console.log('MongoDB connected successfully');
 })
     .catch(err => {
-    console.log(process.env.MONGO_URL)
     console.error('MongoDB connection error:', err);
 });
 

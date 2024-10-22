@@ -26,7 +26,7 @@ const AdminPanel = () => {
     axios.get("/api/projects")
       .then(response => {
         setProjects(response.data);
-        console.log(response.data);
+        // console.log(response.data); // Removed unnecessary console.log
       })
       .catch(error => {
         alert("Error fetching projects:", error);

@@ -40,9 +40,9 @@ const PortFolio = () => {
  
 
   useEffect(() => {
-    const filtered = products.filter(item =>
-      base === "Product Portfolio" ? item.projectType === "product" : item.projectType === "service"
-    );
+    const filtered = Array.isArray(products) ? products.filter(item =>
+      base === "Product Portfolio" ? item?.projectType === "product" : item?.projectType === "service"
+    ) : [];
     setFilteredProducts(filtered);
   }, [base, products]);
   return (
